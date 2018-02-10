@@ -1,0 +1,69 @@
+// @mixin generateCircle($segments) {
+//   $segmentAngle: 360 / $segments;
+//   $skew: 90 - $segmentAngle;
+//
+//   position:absolute;
+//
+//   border-radius: 100%;
+//
+//   .segment {
+//     transform: skewX(#{$skew}deg);
+//     overflow: hidden;
+//     width: 100px;
+//     height: 100px;
+//     .inner {
+//       transform: skewX(-#{$skew}deg);
+//     }
+//   }
+//
+//   // while loop
+//   $segmentIndex: 360;
+//   @while $segmentIndex > 0 {
+//     $segmentNumber: $segmentIndex / $segmentAngle;
+//     .segment-#{$segmentNumber} {
+//       transform: rotate(#{$segmentIndex}deg);
+//       @if $segmentNumber % 2 {
+//         .inner {
+//           background-color: green;
+//         }
+//       }
+//     }
+//
+//     $segmentIndex: $segmentIndex - $segmentAngle;
+//   }
+// }
+
+
+// attept 2 with mixins
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform:
+          rotate($rot * 1deg)
+          translate($circle-size / 2)
+          rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}

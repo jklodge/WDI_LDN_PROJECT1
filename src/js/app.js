@@ -1,16 +1,46 @@
-// let type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
-// radius = '12em', //distance from center
-// start = -90, //shift start from 0
-// $elements = $('li:not(:first-child)'),
-// numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle
-// slice = 360 * type / numberOfElements;
+function init() {
+
+
+// need to start with the first list on active with maybe a 500ms delay
+
+// then loop through maybe using next changing the active status
+
+// then loop back round maybe using set interval every 1 second like timer doing the function you set it like
+
 //
-// $elements.each(function(i) {
-//   var $self = $(this),
-//   rotate = slice * i + start,
-//   rotateReverse = rotate * -1;
 //
-//   $self.css({
-//     'transform': 'rotate(' + rotate + 'deg) translate(' + radius + ') rotate(' + rotateReverse + 'deg)'
-//   });
-// });
+// const countdown = document.querySelector('.octagon');
+// const screen = document.getElementsByClassName('screen')[1];
+// let timer = 30;
+// let timerIsRunning = false;
+// let timerID = null;
+// function runTimer() {
+//   if(!timerIsRunning) {
+//     timerID = setInterval(function(){
+//       screen.innerHTML = --timer;
+//       if(timer === 0) {
+//         clearInterval(timerID);
+//         alarm.classList.toggle('ringing');
+//         // timer = 10; // or if button clicked
+//       }
+//
+//     },1000);
+//     timerIsRunning = true;
+//   } else {
+//     clearInterval(timerID);
+//     timerIsRunning = false;
+//   }
+// }
+
+const $countdown = $('.screen');
+
+
+$countdown.on('click', (e)=> {
+  $countdown.toggleClass('pulse');
+  $circle.toggleClass('ringing');
+
+  e.target
+  console.log('hello');
+});
+}
+window.addEventListener('DOMContentLoaded', init);

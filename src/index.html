@@ -6,6 +6,7 @@
     <title>WDI Project 1: JavaScript Game</title>
     <script src="/js/app.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
   </head>
   <body>
@@ -13,30 +14,90 @@
       <div class="leaderboard">
         <h2>Leaderboard</h2>
       </div>
-      <div class="countdown">
-        <h2>Countdown</h2>
-      </div>
-    </header>
-    <main>
       <section class="choose">
       <h3>Choose your color</h3>
       <div class="btn-container">
-        <button class="red">Red</button>
-        <button class="blue">Blue</button>
+        <button class="red pointer" value="Red">Red</button>
+        <button class="blue pointer" value="Blue">Blue</button>
       </div>
       </section>
+      <div class="countdown">
+        <h2>Countdown</h2>
+          <div class="screen pulse animate infinite">30
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
 
-      <section class="wheelcontainer">
-        <ul class="wheel">
-          <li class="center">center</li>
-          <li class="deg0">center</li>
-          <li class="deg45">1</li>
-          <li class="deg135">2</li>
-          <li class="deg180">3</li>
-          <li class="deg225">4</li>
-          <li class="deg315">5</li>
-        </ul>
+
+      <section>
+        <!-- <div class="wheelcontainer">
+          <!-- <div class="center">center</div> -->
+          <!-- <div class="segment-1">
+            <div class="segment">
+              <div class="inner">1</div>
+            </div>
+          </div>
+          <div class="segment-2">
+            <div class="segment">
+              <div class="inner">2</div>
+            </div>
+          </div>
+          <div class="segment-3">
+            <div class="segment">
+              <div class="inner">3</div>
+            </div>
+          </div>
+          <div class="segment-4">
+            <div class="segment">
+              <div class="inner">4</div>
+            </div>
+          </div>
+          <div class="segment-5">
+            <div class="segment">
+              <div class="inner">5</div>
+            </div>
+          </div>
+          <div class="segment-6">
+            <div class="segment">
+              <div class="inner">6</div>
+            </div>
+          </div>
+          <div class="segment-7">
+            <div class="segment">
+              <div class="inner">7</div>
+            </div>
+          </div>
+          <div class="segment-8">
+            <div class="segment">
+              <div class="inner">8</div>
+            </div>
+          </div> -->
+
+        <!-- </div> -->
+
+        <!-- //second attempt 2 -->
+
+        <ul class='circle-container'>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+  <li class="circle"></li>
+</ul>
       </section>
+
+      <ul class="table">
+        <li class="topheader">Place your bets</li>
+        <li class="topone">Add your bets</li>
+        <li class="toptwo">10</li>
+        <li class="bottomone"><button>ADD</button></li>
+        <li class="bottomtwo"><button>REMOVE</button></li>
+      </ul>
     </main>
   </body>
 </html>
