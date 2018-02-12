@@ -1,4 +1,5 @@
 @import "helpers/mixins";
+@import "helpers/animate";
 
 * {
   box-sizing: border-box;
@@ -23,13 +24,26 @@ header {
   margin: 0 50px;
 }
 .screen {
-  text-align: center;
+  width: 100%;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // text-align: center;
   height: 59px;
   color: white;
-  border: white solid 1px;
+  margin-right: 0;
 }
 
-
+.timer {
+  text-align: center;
+}
+.answer {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+}
 .spinning {
   animation: spin 1s linear;
 }
@@ -42,26 +56,9 @@ header {
     }
 }
 
-@keyframes pulse {
-  from {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  -webkit-animation-name: pulse;
-  animation-name: pulse;
+.middle {
+  display: flex;
+  flex-flow: column;
 }
 
 // Choose color section
@@ -85,6 +82,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: center;
+    text-align: center;
     button {
       margin: 0 5px;
       border-radius: 5px;
@@ -94,11 +92,18 @@ header {
   }
 }
 .red {
+  display: flex;
+  width: 50%;
+  justify-content: center;
   background-color: red;
 }
 .blue {
+  display: flex;
+  width: 50%;
   background-color: blue;
+  justify-content: center;
 }
+
 
 .table {
   margin-top: 50px;
@@ -144,7 +149,9 @@ border: white solid 1px;
   flex-basis: 50%;
   width: 50%;
   border: white solid 1px;
-
+}
+span {
+  font-size: 10px;
 }
 // .wheelcontainer {
 //   width: 100px;
@@ -191,32 +198,29 @@ border: white solid 1px;
 
 //new attempt 2
 
-.circle {
-	width: 100px;
-	height: 100px;
-	background: red;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
+.active {
+  background: blue;
 }
 
-
 .circle-container {
-  @include on-circle($item-count: 8, $circle-size: 18em, $item-size: 4em);
+  @include on-circle($item-count: 8, $circle-size: 15em, $item-size: 4em);
   margin: 2.5em auto 0;
   border: solid 5px black;
+}
 
 .circle {
-    display: block;
-    max-width: 100%;
-    border-radius: 50%;
-    filter: grayscale(100%);
-    border: solid 5px tomato;
-    transition: .15s;
-
-    &:hover,
-    &:active {
-      filter: grayscale(0);
-    }
+  width: 100px;
+  height: 100px;
+  background: red;
+  border: solid 5px tomato;
+  display: block;
+  max-width: 100%;
+  border-radius: 50%;
+  &.odd {
+    background-color: blue;
+    border: solid 5px dodgerBlue;
+  }
+  &.highlight {
+    border: solid 5px yellow;
   }
 }
