@@ -6,8 +6,11 @@
 }
 
 body {
-  background-color: black;
+  // background-color: black;
   background-position: center;
+  background-image: url('https://i.imgur.com/wLyPpwg.jpg');
+  background-repeat: no-repeat;
+    background-size: stretch;
   font-family: 'Mukta Mahee', sans-serif;
 }
 
@@ -16,6 +19,9 @@ header {
   justify-content: space-between;
   color: white;
 }
+label {
+  font-size: 20px;
+}
 
 .leaderboard {
   margin: 0 50px;
@@ -23,29 +29,28 @@ header {
 .countdown {
   margin: 0 50px;
 }
-.screen {
-  width: 100%;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // text-align: center;
-  height: 59px;
-  color: white;
-  margin-right: 0;
-}
 
+h2 {
+  margin-bottom: 0;
+}
 .timer {
   text-align: center;
+  font-size: 50px;
+  padding: 0;
+  margin: 0;
+}
+.message {
+  margin: 0;
 }
 .answer {
   width: 100%;
   display: flex;
   text-align: center;
   justify-content: center;
-  padding: 20px;
+  padding: 2px;
 }
 .spinning {
-  animation: spin 1s linear;
+  animation: spin 2s linear infinite;
 }
 @keyframes spin {
     from {
@@ -56,20 +61,15 @@ header {
     }
 }
 
-.middle {
-  display: flex;
-  flex-flow: column;
-}
-
 // Choose color section
 .pointer {
   cursor: pointer;
   }
 .choose {
-  width: 200px;
+  // padding-top: 20px;
+  width: 400px;
   margin: auto;
   display: flex;
-  align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
   h3 {
@@ -78,11 +78,13 @@ header {
     margin-bottom: 7px;
     color: white;
   }
+  .getInitials {
+    text-align: center;
+  }
   .btn-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    text-align: center;
     button {
       margin: 0 5px;
       border-radius: 5px;
@@ -95,63 +97,22 @@ header {
   display: flex;
   width: 50%;
   justify-content: center;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.5);
 }
 .blue {
   display: flex;
   width: 50%;
-  background-color: blue;
+  background-color: rgba( 0, 0, 255, 0.5);
   justify-content: center;
 }
 
-
-.table {
-  margin-top: 50px;
-  width: 25%;
-  display: flex;
-  color: white;
-  list-style: none;
-  flex-flow: row wrap;
-  justify-content: center;
-  padding-right: 0;
-  // border: white solid 1px;
-  box-sizing: border-box;
-  flex-grow: 1;
-  overflow: hidden; // Or flex might break
-  text-align: center;
-  border-radius: 25%;
-
-}
-.topheader{
-  flex-basis: 100%;
-align-content: center;
-border: white solid 1px;
-
-}
-.topone {
-  flex-basis: 50%;
-  width: 50%;
-  border: white solid 1px;
-}
-.toptwo {
-  flex-basis: 50%;
-  width: 50%;
-  border: white solid 1px;
-
-}
-.bottomone {
-  flex-basis: 50%;
-  width: 50%;
-  border: white solid 1px;
-
-}
-.bottomtwo {
-  flex-basis: 50%;
-  width: 50%;
-  border: white solid 1px;
-}
 span {
   font-size: 10px;
+}
+
+.addLeader p {
+  text-align: center;
+  margin-top: 0;
 }
 // .wheelcontainer {
 //   width: 100px;
@@ -197,30 +158,92 @@ span {
 // .center {width: 2em;}
 
 //new attempt 2
+.middle {
+  display: flex;
+  flex-flow: row;
+}
+.table {
+  display: flex;
+  color: white;
+  list-style: none;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+  width: 30%;
+  height: 30%;
+  border-radius: 25%;
 
+}
+.topheader{
+  flex-basis: 100%;
+  align-content: center;
+  border: white solid 1px;
+  background-color: rgba( 0, 0, 255, 0.4);
+
+}
+.topone {
+  flex-basis: 50%;
+  width: 50%;
+  border: white solid 1px;
+  background-color: rgba( 0, 0, 255, 0.4);
+}
+.toptwo {
+  flex-basis: 50%;
+  width: 50%;
+  border: white solid 1px;
+  background-color: rgba( 0, 0, 255, 0.4);
+}
+.add {
+  flex-basis: 33.3%;
+  width: 33.3%;
+  border: white solid 1px;
+  border-radius: 5px;
+  background-color: rgba( 0, 0, 255, 0.4);
+}
+.reset {
+  flex-basis: 33.3%;
+  width: 33.3%;
+  border: white solid 1px;
+  border-radius: 5px;
+  background-color: rgba( 0, 0, 255, 0.4);
+}
+.remove {
+  flex-basis: 33.4%;
+  width: 33.3%;
+  border: white solid 1px;
+  border-radius: 5px;
+  background-color: rgba( 0, 0, 255, 0.4);
+}
+.table button {
+  border-radius: 5px;
+  background-color: rgba(255, 0, 0, 0.4);
+  color: white;
+}
 .active {
   background: blue;
 }
 
 .circle-container {
-  @include on-circle($item-count: 8, $circle-size: 15em, $item-size: 4em);
+  @include on-circle($item-count: 8, $circle-size: 16em, $item-size: 1em);
   margin: 2.5em auto 0;
-  border: solid 5px black;
+  // border: solid 5px;
 }
 
 .circle {
   width: 100px;
   height: 100px;
-  background: red;
-  border: solid 5px tomato;
+  background-color: rgba(255, 0, 0, 0.4);
+  // border: solid 5px rgba(255, 0, 0, 0.7);
+  border: solid 2px rgba(255, 255, 255, 0.7);
   display: block;
   max-width: 100%;
   border-radius: 50%;
   &.odd {
-    background-color: blue;
-    border: solid 5px dodgerBlue;
+    background-color: rgba( 0, 0, 255, 0.4);
+    // border: solid 5px rgba( 0, 0, 255, 0.7);
+    border: solid 2px rgba(255, 255, 255, 0.7);
   }
   &.highlight {
-    border: solid 5px yellow;
+    border: solid 4px yellow;
   }
 }

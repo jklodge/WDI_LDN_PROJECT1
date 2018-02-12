@@ -10,15 +10,22 @@
   <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
 </head>
 <body>
+  <!-- <img src="lasvegas.jpg" alt="vegas"> -->
   <header>
     <div class="leaderboard">
       <h2>Leaderboard</h2>
+      <div class="addLeader">
+        <p>JKL: 230</p>
+        <p>RHL: 190</p>
+        <p>BML: 70</p>
+        <p class="addWinner"></p>
+      </div>
     </div>
     <section class="choose">
       <form class="getInitials">
         <label for="initials">Enter your initials to play!</label>
         <input id="initials" type="text" name="initials" value="">
-        <input type="submit" name="submit" value="submit">
+        <input type="submit" name="submit" value="Submit">
       </form>
       <h3>Choose your color</h3>
       <div class="btn-container">
@@ -30,36 +37,37 @@
     </section>
     <div class="countdown">
       <h2>Countdown</h2>
-      <div class="screen animate infinite">
         <p class="timer animate infinite">5</p>
         <p class="message">No more bets please</p>
       </div>
-    </div>
   </div>
 </header>
 <main>
   <section class="middle">
 <ul class="table">
-  <li class="topheader">Place your bets</li>
+  <li class="topheader animate infinite">Place your bets</li>
   <li class="topone">Add your bets</li>
-  <li class="toptwo">10</li>
-  <li class="bottomone"><button>ADD</button></li>
-  <li class="bottomtwo"><button>REMOVE</button></li>
+  <li class="toptwo total"></li>
+  <li class="add"><button>ADD</button></li>
+  <li class="reset"><button>RESET</button></li>
+  <li class="remove"><button>REMOVE</button></li>
+  <!-- <li class="topheader confirm"><button>Confirm bets</button></li> -->
+  <li><p class="final"></p></li>
 </ul>
 
 <ul class='circle-container'>
-  <li class='animated circle'></li>
-  <li class='animated circle odd'></li>
-  <li class='animated circle'></li>
-  <li class='animated circle odd'></li>
-  <li class='animated circle'></li>
-  <li class='animated circle odd'></li>
-  <li class='animated circle active'></li>
-  <li class='animated circle odd'></li>
+  <li class='animated circle even' value='red'></li>
+  <li class='animated circle odd' value='blue'></li>
+  <li class='animated circle even' value='red'></li>
+  <li class='animated circle odd' value='blue'></li>
+  <li class='animated circle even' value='red'></li>
+  <li class='animated circle odd' value='blue'></li>
+  <li class='animated circle even active' value='red'></li>
+  <li class='animated circle odd' value='blue'></li>
 </ul>
 
 </section>
-
+<img src="images/getlucky.png" alt="">
 
 </main>
 </body>
