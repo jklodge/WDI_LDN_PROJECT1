@@ -13,6 +13,13 @@ body {
     background-size: stretch;
   font-family: 'Mukta Mahee', sans-serif;
 }
+
+.bg2 {
+  background-image: url(https://i.imgur.com/AqqXtnq.jpg);
+  background-repeat: no-repeat;
+  background-size: stretch;
+  background-position: center;
+}
 .fullScreen {
   height: 100vh;
   width: 100vw;
@@ -277,14 +284,18 @@ span {
 }
 
 .circle-container {
-  @include on-circle($item-count: 8, $circle-size: 16em, $item-size: 1em);
+  &.has-twelve {
+    @include on-circle($item-count: 12, $circle-size: 17em, $item-size: 100px);
+  }
+  &.has-eight {
+    @include on-circle($item-count: 8, $circle-size: 17em, $item-size: 100px);
+  }
   margin: 2.5em auto 0;
   // border: solid 5px;
 }
 
 .circle {
-  width: 100px;
-  height: 100px;
+  color: white;
   background-color: rgba(255, 0, 0, 0.4);
   // border: solid 5px rgba(255, 0, 0, 0.7);
   border: solid 2px rgba(255, 255, 255, 1);
@@ -298,5 +309,9 @@ span {
   }
   &.highlight {
     border: solid 4px yellow;
+  }
+  & p {
+    margin-left: 45px;
+    margin-top: 35px;
   }
 }

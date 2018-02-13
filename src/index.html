@@ -15,10 +15,6 @@
       <p class="winorlose"></p>
     <button class="nextRound"></button>
     </div>
-    <!-- <div class="firstlosePopup">
-      <p>Unlucky! Your bets didn't match this time. Have another go...</p>
-    <button class="playAgain">Play again?</button>
-    </div> -->
   </div>
   <header>
     <div class="leaderboard">
@@ -39,10 +35,10 @@
       </form>
       <h3 class="chooseColor animated infinite">Choose your color</h3>
       <div class="btn-container animated infinite">
-        <button class="evenButton pointer" value="Even">Even</button>
+        <button class="evenButton pointer" value="Even">1 - 6</button>
         <button class="red pointer" value="Red">Red</button>
         <button class="blue pointer" value="Blue">Blue</button>
-        <button class="oddButton pointer" value="Odd">Odd</button>
+        <button class="oddButton pointer" value="Odd">7 - 12</button>
       </div>
       <div class="answer">
       </div>
@@ -63,19 +59,23 @@
   <li class="add"><button>ADD</button></li>
   <li class="reset"><button>RESET</button></li>
   <li class="remove"><button>REMOVE</button></li>
-  <!-- <li class="topheader confirm"><button>Confirm bets</button></li> -->
   <li><p class="final"></p></li>
 </ul>
 
-<ul class='circle-container'>
-  <li class='animated circle even' value='red'></li>
-  <li class='animated circle odd' value='blue'></li>
-  <li class='animated circle even' value='red'></li>
-  <li class='animated circle odd' value='blue'></li>
-  <li class='animated circle even' value='red'></li>
-  <li class='animated circle odd' value='blue'></li>
-  <li class='animated circle even active' value='red'></li>
-  <li class='animated circle odd' value='blue'></li>
+<ul class='circle-container has-eight'>
+  <li class='animated circle even' value='red'><p>1</p></li>
+  <li class='animated circle odd' value='blue'><p>2</p></li>
+  <li class='animated circle even' value='red'><p>3</p></li>
+  <li class='animated circle odd' value='blue'><p>4</p></li>
+  <li class='animated circle even' value='red'><p>5</p></li>
+  <li class='animated circle odd' value='blue'><p>6</p></li>
+  <li class='animated circle even' value='red'><p>7</p></li>
+  <li class='animated circle odd' value='blue'><p>8</p></li>
+  <li class='animated circle even high hidden' value='red'><p>9</p></li>
+  <li class='animated circle odd high hidden' value='blue'><p>10</p></li>
+  <li class='animated circle even high hidden' value='red'><p>11</p></li>
+  <li class='animated circle odd high hidden' value='blue'><p>12</p></li>
+  <li class='animated circle odd bonus hidden' value='green'><p>13</p></li>
 </ul>
 
 </section>

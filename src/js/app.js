@@ -18,8 +18,11 @@ function init() {
   const $popButton = $('.nextRound');
   const $colorHeader = $('.chooseColor');
   const $enter = $('.enter');
-  const $even = $('.even');
-  const $odd = $('.odd');
+  const $even = $('.evenButton');
+  const $odd = $('.oddButton');
+  const $bonusCircle = $('.bonus');
+  const $highCircle = $('.high');
+  const $body = $('body');
   let choice = '';
   let timer = 5;
   let total = 0;
@@ -28,8 +31,15 @@ function init() {
   let $input = '';
 
 
+  // $('body').css('background-image', 'url(https://i.imgur.com/AqqXtnq.jpg)');
   $fullScreen.hide();
   $nomore.hide();
+  $even.hide();
+  $odd.hide();
+  $bonusCircle.hide();
+  $highCircle.hide();
+  // $( "ul li:nth-last-child(2)" ).remove( "<span> - 2nd to last!</span>" );
+  // $('ul.circle-container li.high').remove();
   // countdown timer
   function countdown() {
 
@@ -81,6 +91,7 @@ function init() {
           $allbuttons.prop('disabled', false);
           $popup.append(`Congratualations ${name} you won! You're through to round two!`);
           $popButton.append('Next Round');
+          $popButton.one('click', roundTwo);
         } else if (choice === 'Red' && $winner.hasClass('even')){
           $($addWinner).append(`${name}: 10`);
           $nomore.show().removeClass('flash');
@@ -89,6 +100,7 @@ function init() {
           $allbuttons.prop('disabled', false);
           $popup.append(`Congratualations ${name} you won! You're through to round two!`);
           $popButton.append('Next Round');
+          $popButton.one('click', roundTwo);
         }else {
           $nomore.show().removeClass('flash');
           console.log('YOU LOST');
@@ -96,13 +108,38 @@ function init() {
           $allbuttons.prop('disabled', false);
           $popup.append(`Unlucky ${name}! Your bets didn't match this time. Have another go...?`);
           $popButton.append('Play again?');
+          $popButton.one('click', restart);
         }
       }
     }, 180);
   }
-  $popButton.click(function() {
+  // $popButton.click(function() {
+  //   restart();
+  // });
+
+// round two
+  function roundTwo() {
     restart();
-  });
+    $body.addClass('bg2');
+    $highCircle.show();
+    $even.show();
+    $odd.show();
+    $spinner.removeClass('has-eight');
+    $spinner.addClass('has-twelve');
+    $($addWinner).append(`${name}: 20`);
+  }
+
+  // round three
+  function roundThree() {
+      restart();
+      $highCircle.show();
+      $even.show();
+      $odd.show();
+      $spinner.removeClass('has-eight');
+      $spinner.addClass('has-twelve');
+      $bonusCircle.show();
+      $($addWinner).append(`${name}: 30`);
+    }
 
   function restart() {
     $fullScreen.hide();
