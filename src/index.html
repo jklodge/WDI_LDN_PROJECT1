@@ -10,7 +10,16 @@
   <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
 </head>
 <body>
-  <!-- <img src="lasvegas.jpg" alt="vegas"> -->
+  <div class="fullScreen">
+    <div class="firstPopup">
+      <p class="winorlose"></p>
+    <button class="nextRound"></button>
+    </div>
+    <!-- <div class="firstlosePopup">
+      <p>Unlucky! Your bets didn't match this time. Have another go...</p>
+    <button class="playAgain">Play again?</button>
+    </div> -->
+  </div>
   <header>
     <div class="leaderboard">
       <h2>Leaderboard</h2>
@@ -22,30 +31,33 @@
       </div>
     </div>
     <section class="choose">
-      <form class="getInitials">
+      <p class="enter"></p>
+      <form class="getInitials animated flash">
         <label for="initials">Enter your initials to play!</label>
         <input id="initials" type="text" name="initials" value="">
         <input type="submit" name="submit" value="Submit">
       </form>
-      <h3>Choose your color</h3>
-      <div class="btn-container">
+      <h3 class="chooseColor animated infinite">Choose your color</h3>
+      <div class="btn-container animated infinite">
+        <button class="evenButton pointer" value="Even">Even</button>
         <button class="red pointer" value="Red">Red</button>
         <button class="blue pointer" value="Blue">Blue</button>
+        <button class="oddButton pointer" value="Odd">Odd</button>
       </div>
       <div class="answer">
       </div>
     </section>
     <div class="countdown">
       <h2>Countdown</h2>
-        <p class="timer animate infinite">5</p>
-        <p class="message">No more bets please</p>
+        <p class="timer animated infinite">5</p>
+        <p class="message animated infinite">No more bets please</p>
       </div>
   </div>
 </header>
 <main>
   <section class="middle">
 <ul class="table">
-  <li class="topheader animate infinite">Place your bets</li>
+  <li class="topheader animated infinite">Place your bets</li>
   <li class="topone">Add your bets</li>
   <li class="toptwo total"></li>
   <li class="add"><button>ADD</button></li>

@@ -11,18 +11,28 @@ function init() {
   const $circle = $('.circle');
   const $timer = $('.timer');
   const $nomore = $('.message');
-  const $getInitials = $('form');
-  const $welcome = $('.answer');
+  const $submitForm = $('form');
+  const $chosenColor = $('.answer');
+  const $fullScreen = $('.fullScreen');
+  const $popup = $('.winorlose');
+  const $popButton = $('.nextRound');
+  const $colorHeader = $('.chooseColor');
+  const $enter = $('.enter');
+  const $even = $('.even');
+  const $odd = $('.odd');
   let choice = '';
   let timer = 5;
+  let total = 0;
   let name = '';
   let $winner = '';
   let $input = '';
 
 
+  $fullScreen.hide();
   $nomore.hide();
   // countdown timer
   function countdown() {
+
     const timerId = setInterval(() => {
       if (timer === -1) {
         clearInterval(timerId);
@@ -38,11 +48,12 @@ function init() {
 
   function doSomething() {
     // alert('No more bets');
-    $nomore.show();
+    $nomore.show().toggleClass('flash');
     $allbuttons.prop('disabled', true);
     $('.final').html(`${name} placed ${total} bets on ${choice}`);
-    nextOne();
-    $spinner.toggleClass('spinning');
+    setTimeout(nextOne, 2000);
+    // nextOne();
+    // $spinner.toggleClass('spinning');
   }
 
   // move the class around the board
@@ -50,40 +61,83 @@ function init() {
     let currentActive = 0;
     let timesSpun = 0;
     const $lis = $('.circle-container > li');
+    const ranNum = Math.floor(Math.random() * 8) + 5;
     const startSpinner =  setInterval(function() {
+      console.log('ranNum', ranNum);
       currentActive = (currentActive + 1) % $lis.length;
       $lis.removeClass('flash').eq(currentActive).addClass('flash');
       timesSpun += 1;
-      if(timesSpun === Math.floor(Math.random() * 4) + 1){
+      console.log('timesspun:', timesSpun);
+      if(timesSpun === ranNum){
         clearInterval(startSpinner);
         $spinner.removeClass('spinning');
         $winner = $lis.eq(currentActive);
-        $winner.css({border: '5px solid #FFA500'});
+        $winner.toggleClass('.winner');
         if(choice === 'Blue' && $winner.hasClass('odd')){
           $($addWinner).append(`${name}: 10`);
+          $nomore.show().removeClass('flash');
           console.log('You won');
-        }else if (choice === 'Red' && $winner.hasClass('even')){
+          $fullScreen.delay(1000).show(0);
+          $allbuttons.prop('disabled', false);
+          $popup.append(`Congratualations ${name} you won! You're through to round two!`);
+          $popButton.append('Next Round');
+        } else if (choice === 'Red' && $winner.hasClass('even')){
           $($addWinner).append(`${name}: 10`);
+          $nomore.show().removeClass('flash');
           console.log('You won');
+          $fullScreen.delay(1000).show(0);
+          $allbuttons.prop('disabled', false);
+          $popup.append(`Congratualations ${name} you won! You're through to round two!`);
+          $popButton.append('Next Round');
         }else {
+          $nomore.show().removeClass('flash');
           console.log('YOU LOST');
+          $fullScreen.delay(1000).show(0);
+          $allbuttons.prop('disabled', false);
+          $popup.append(`Unlucky ${name}! Your bets didn't match this time. Have another go...?`);
+          $popButton.append('Play again?');
         }
       }
     }, 180);
   }
+  $popButton.click(function() {
+    restart();
+  });
 
+  function restart() {
+    $fullScreen.hide();
+    // $submitForm[0].reset();
+    // $submitForm.show();
+    $nomore.hide();
+    $chosenColor.hide();
+    $winner.removeClass('.winner');
+    total = 0;
+    $('.total').text(total);
+    $popup.html('');
+    $popButton.html('');
+    $('.final').hide();
+    $enter.html(`Welcome back ${name}!`);
+    console.log(name);
+    timer = 5;
+    $colorHeader.toggleClass('flash');
+    $('.chooseColor').toggleClass('flash');
+    if($button.click(function() {
+      countdown();
+      console.log('color button clicked');
+    }))
+      console.log('i clicked');
+  }
 
-
-
-
-  $getInitials.submit(function(e) {
+  $submitForm.submit(function(e) {
     e.preventDefault();
     $input = $('#initials');
-    $getInitials.hide();
+    $submitForm.hide();
     // const $name = $($input).val();
     name = $input.val().toUpperCase();
     $input.val('');
     console.log(name);
+    $colorHeader.toggleClass('flash');
+    $('.chooseColor').toggleClass('flash');
     countdown();
   });
 
@@ -92,11 +146,12 @@ function init() {
     if(!name) return false;
     choice = $(e.target).val();
     console.log(choice);
-    $welcome.html(`${name} chose ${choice}`);
-    // ('.topheader').toggleClass('flash');
+    $chosenColor.show();
+    $chosenColor.html(`${name} chose ${choice}`);
+    $('.topheader').toggleClass('flash');
   });
 
-  let total = 0;
+
   $('.total').text(total);
 
   // When button is clicked
@@ -107,6 +162,7 @@ function init() {
     if(total >= 0) {
       $('.total').text(total);
       $('.final').html(`${name} placed ${total} bets on ${choice}`);
+      $('.topheader').removeClass('flash');
     }
   });
 
@@ -116,6 +172,7 @@ function init() {
     if(total >= 0) {
       $('.total').text(total);
       $('.final').html(`${name} placed ${total} bets on ${choice}`);
+      $('.topheader').removeClass('flash');
     }
   });
 
@@ -124,6 +181,7 @@ function init() {
     total = 0;
     $('.total').text(total);
     $('.final').html(`${name} placed ${total} bets on ${choice}`);
+    $('.topheader').removeClass('flash');
   });
 
   // $('.confirm').click(function(){
