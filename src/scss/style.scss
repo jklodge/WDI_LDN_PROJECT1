@@ -9,13 +9,21 @@ body {
   background-color: black;
   background-position: center;
   background-image: url('https://i.imgur.com/wLyPpwg.jpg');
+  // background-image: url('https://i.imgur.com/5tjtIXd.jpg');
   background-repeat: no-repeat;
     background-size: stretch;
   font-family: 'Mukta Mahee', sans-serif;
+  height: 100vh;
 }
 
 .bg2 {
   background-image: url(https://i.imgur.com/AqqXtnq.jpg);
+  background-repeat: no-repeat;
+  background-size: stretch;
+  background-position: center;
+}
+.bg3 {
+  background-image: url(https://i.imgur.com/zGlj9kj.jpg);
   background-repeat: no-repeat;
   background-size: stretch;
   background-position: center;
@@ -62,9 +70,11 @@ header {
   color: white;
 }
 label {
-  font-size: 20px;
+  font-size: 25px;
 }
-
+.message {
+  text-align: center;
+}
 .leaderboard {
   margin: 0 50px;
 }
@@ -154,12 +164,12 @@ h2 {
   justify-content: center;
 }
 
-.oddButton {
-  background-color: rgba(46, 139, 87, 0.5);
+.lowButton {
+  background-color: rgba(128, 128, 128, 0.5);
   width: 25%;
 }
-.evenButton {
-  background-color: rgba(46, 139, 87, 0.5);
+.highButton {
+  background-color: rgba(128, 128, 128, 0.5);
   width: 25%;
 }
 
@@ -167,9 +177,7 @@ span {
   font-size: 10px;
 }
 
-.winner {
-  border: 5px solid #FFA500;
-}
+
 .addLeader p {
   text-align: center;
   margin-top: 0;
@@ -302,7 +310,7 @@ span {
   display: block;
   max-width: 100%;
   border-radius: 50%;
-  &.odd {
+  &.blue {
     background-color: rgba( 0, 0, 255, 0.4);
     // border: solid 5px rgba( 0, 0, 255, 0.7);
     border: solid 2px rgba(255, 255, 255, 1);
@@ -310,8 +318,14 @@ span {
   &.highlight {
     border: solid 4px yellow;
   }
+  &.yellowWin {
+    border: #FFA500 solid 5px;
+  }
   & p {
     margin-left: 45px;
     margin-top: 35px;
   }
+}
+.hidden {
+  display: none !important;
 }
