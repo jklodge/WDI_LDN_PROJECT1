@@ -163,6 +163,12 @@ h2 {
   background-color: rgba( 0, 0, 255, 0.5);
   justify-content: center;
 }
+.green {
+    display: flex;
+    width: 25%;
+    background-color: rgba( 60, 179, 113, 0.5);
+    justify-content: center;
+}
 
 .lowButton {
   background-color: rgba(128, 128, 128, 0.5);
@@ -177,58 +183,25 @@ span {
   font-size: 10px;
 }
 
-
 .addLeader p {
   text-align: center;
   margin-top: 0;
 }
-// .wheelcontainer {
-//   width: 100px;
-//   height: 100px;
-// }
-
-// // wheel
-// .wheelcontainer{
-//   position: relative;
-//   width: 16em;
-//   height: 16em;
-//   padding: 0;
-//   /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
-//   // border: dashed 1px;
-//   // border-radius: 50%;
-//   margin: 1.75em auto 0;
-// }
-//
-// li {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 4em;
-//   height: 4em;
-//   color: red;
-//   border: black solid 1px;
-//   border-radius: 50px;
-// }
-// .deg0 { transform: translate(6em); } /* 12em = half the width of the wrapper */
-// .deg45 { transform: rotate(45deg) translate(6em) rotate(-45deg); }
-// .deg90 { transform: rotate(90deg) translate(6em) rotate(-90deg); }
-// .deg135 { transform: rotate(135deg) translate(6em) rotate(-135deg); }
-// .deg180 { transform: translate(-10em); }
-// // .deg225 { transform: rotate(225deg) translate(6em) rotate(-225deg); }
-// // .deg270 { transform: rotate(270deg) translate(6em) rotate(-270deg); }
-// // .deg315 { transform: rotate(315deg) translate(6em) rotate(-315deg); }
-// // .deg360 { transform: rotate(360deg) translate(6em) rotate(-360deg); }
-// .center {width: 2em;}
 
 //new attempt 2
 .middle {
   display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  display: flex;
   flex-flow: row;
+  color: white;
+  justify-content: center;
+  text-align: center;
+}
+.winnings {
+  margin: 0 50px;
+  font-size: 20px;
 }
 .table {
   display: flex;
@@ -240,7 +213,9 @@ span {
   width: 30%;
   height: 30%;
   border-radius: 25%;
-
+& button {
+  width: 75%;
+ }
 }
 .topheader{
   flex-basis: 100%;
@@ -315,6 +290,9 @@ span {
     // border: solid 5px rgba( 0, 0, 255, 0.7);
     border: solid 2px rgba(255, 255, 255, 1);
   }
+  &.bonus {
+    background-color: rgba( 60, 179, 113, 0.5);
+  }
   &.highlight {
     border: solid 4px yellow;
   }
@@ -322,7 +300,6 @@ span {
     border: #FFA500 solid 5px;
   }
   & p {
-    margin-left: 45px;
     margin-top: 35px;
   }
 }
