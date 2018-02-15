@@ -1,6 +1,4 @@
 function init() {
-
-  // const $addWinner = $('.addWinner');
   const $allbuttons = $('button');
   const $spinner = $('.circle-container');
   const $circle = $('.circle');
@@ -12,6 +10,7 @@ function init() {
   const $winorlosemessage = $('.winorlose');
   const $nextRound = $('.nextRound');
   const $cashout = $('.cashout');
+  const $topUp = $('.topUp');
   const $colorHeader = $('.chooseColor');
   const $enter = $('.enter');
   const $bonusCircle = $('.bonus');
@@ -32,22 +31,24 @@ function init() {
   const $amountHeader = $('.amountheader');
   const $welcomePopup = $('.welcomepop');
   const $welcomeMessage = $('.welcomemessage');
-  const $giphy = $('.giphy');
   const $firstPopup = $('.firstPopup');
+  let $newBalance = 0;
   let choice = '';
   let choiceNum = '';
   let timer = 5;
-  let total = 0;
+  let totalBets = 0;
   let totalWinnings = 0;
   let name = '';
   let $winner = '';
   let $input = '';
   let round = 1;
   let amountAdded = 0;
-  let amount = 0;
+  let amountInput = 0;
   let timerHasStarted = false;
   const $inputAm = $('.value');
   const $welcomeButton = $('.welcomeButton');
+  let totalLoses = 0;
+
 
   // hidden elements
   $fullScreen.hide();
@@ -59,12 +60,9 @@ function init() {
   $closedChest.hide();
   $welcomePopup.hide();
   $welcomeForm.hide();
-  $nextroundButtons.show();
-  $giphy.hide();
 
   //Call welcome screen
   welcome();
-
   function welcome() {
     $welcomePopup.show();
     $welcomeForm.show();
@@ -74,15 +72,15 @@ function init() {
     $nextroundButtons.hide();
   }
 
+  // event listeners
   $welcomeForm.keypress(function (e) {
     e.preventDefault();
   });
 
   $welcomeButton.on('click',(e) => {
     e.preventDefault();
-    amountAdded = $inputAm.val();
-    amount = (amountAdded - total) + totalWinnings;
-    $amountHeader.html(`You Have £${amountAdded}`);
+    amountInput = parseFloat($inputAm.val());
+    $amountHeader.html(`You Have £${amountInput}`);
     console.log($inputAm.val());
     round = 1;
     $welcomePopup.hide();
@@ -90,6 +88,17 @@ function init() {
     $nextroundButtons.show();
   });
 
+  function amountTopup() {
+    const topUp = parseFloat($inputAm.val());
+    amountInput += topUp;
+    console.log();
+    $amountHeader.html(`You Have £${amountInput}`);
+    console.log($inputAm.val());
+    round = 1;
+    $welcomePopup.hide();
+    $fullScreen.hide();
+    $nextroundButtons.show();
+  }
   // countdown timer
   function countdown() {
     timerHasStarted = true;
@@ -99,6 +108,7 @@ function init() {
         clearInterval(timerId);
         timerHasStarted = false;
         nomoreBets();
+        // $tableHeader.removeClass('flash');
       } else {
         $timer.html(timer);
         timer--;
@@ -110,7 +120,7 @@ function init() {
   function nomoreBets() {
     $nomore.show().toggleClass('flash');
     $allbuttons.prop('disabled', true);
-    $betsMessage.html(`${name} placed ${total} bets on ${choice}`);
+    $betsMessage.html(`${name} placed ${totalBets} bets on ${choice}`);
     setTimeout(spinIt, 2000);
   }
 
@@ -136,7 +146,7 @@ function init() {
             console.log('currentActive', currentActive);
             $winner.addClass('yellowWin');
             $nomore.show().removeClass('flash');
-            $tableHeader.removeClass('flash');
+            // $tableHeader.removeClass('flash');
             clearTimeout(spinTimer);
             return winCheck();
           }
@@ -152,25 +162,28 @@ function init() {
 
   //win Statements
   function winCheck() {
-
     if(round === 1 && $winner.hasClass(choice.toLowerCase()) || round > 1 && ($winner.hasClass(choice.toLowerCase()) && $winner.hasClass(choiceNum.toLowerCase()))){
       round += 1;
-      totalWinnings = totalWinnings + (total * 2);
+      $topUp.hide();
       console.log(`winnings are ${totalWinnings}`);
       console.log(`win equals round ${round}`);
-      $addtoLeader.append(`<p>${name}: ${round * 10}</p>`);
+      console.log(`win equals total ${totalBets}`);
+      console.log(`win equals amountadded ${amountAdded}`);
+      console.log(`win equals amount ${amountInput}`);
       win();
     } else if (round === 3 && $winner.hasClass(choice.toLowerCase())){
       win();
-      totalWinnings = total * 3;
+      $topUp.hide();
+      totalWinnings = totalBets * 2 + totalWinnings;
       console.log(`winnings are ${totalWinnings}`);
     } else {
       lose();
-      totalWinnings = totalWinnings - total;
-      if(totalWinnings <= 0) totalWinnings = 0;
-      console.log(`lose equals round ${round}`);
+      $topUp.show();
+      if(round > 1 && totalWinnings >= totalBets) totalLoses = totalWinnings - totalBets;
+      console.log(`whats total bets ${totalBets}`);
+      console.log(`whats total bets ${totalWinnings}`);
     }
-    amount = (amountAdded - total) + totalWinnings;
+
   }
 
   // restart the board calls the count down when color buttons are clicked
@@ -181,8 +194,8 @@ function init() {
     $circle.removeClass('flash');
     $nomore.hide();
     $winner.removeClass('yellowWin');
-    total = 0;
-    $totalBet.text(total);
+    totalBets = 0;
+    $totalBet.text(totalBets);
     $winorlosemessage.html('');
     $betsMessage.hide();
     $enter.html(`Welcome back ${name}!`);
@@ -191,23 +204,22 @@ function init() {
     $betCalc.show().on('click');
   }
 
-  $colorButtons.click(function() {
-    $colorHeader.removeClass('flash');
-    if(!timerHasStarted) countdown();
-  });
-
   function win() {
+    $addtoLeader.append(`<p>${name}: ${round * 10}</p>`);
     $fullScreen.delay(3000).show(0);
     $allbuttons.prop('disabled', false);
     console.log(`what round ${round}`);
-    amount = (amountAdded - total) + totalWinnings;
+    if (round === 1)totalWinnings = (totalBets * 1.5);
+    if (round === 2)totalWinnings = (totalBets * 1.7) + totalWinnings;
+    if (round === 3)totalWinnings = (totalBets * 1.8) + totalWinnings;
     $winorlosemessage.html(`Congratualations ${name} you won £${totalWinnings}! You're through to Round ${round}!`);
     const message = (round === 3) ? 'Play again?' : 'Next Round';
+
     $nextRound.html(message).on('click', nextRound);
-    $cashout.html('Cashout?').on('click', cashoutGif);
-    if(round === 3){
-      $winorlosemessage.html(`Congratualations ${name} you won £${totalWinnings}! Cash out or play again?`);
-    }
+    $topUp.hide();
+    if (amountInput >= 10)$cashout.html('Cashout?').on('click', cashoutGif);
+    if (amountInput <10)$cashout.html.hide();
+    // if(round === 3) cashoutGif();
   }
 
   function lose() {
@@ -215,12 +227,28 @@ function init() {
     $allbuttons.prop('disabled', false);
     $closedChest.show();
     $chest.hide();
-    amount = (amountAdded - total) + totalWinnings;
-    if(round === 1) $winorlosemessage.append(`Unlucky ${name}! Your bets didn't match this time. Have another go...?`);
-    if(round > 1) $winorlosemessage.append(`Unlucky ${name}! Your bets didn't match this time you lost £${totalWinnings}. Have another go...?`);
+    if(round === 1) $winorlosemessage.append(`Unlucky ${name}! Your bets didn't match this time you lost ${totalBets}. Have another go...?`);
+    if(round > 1 && totalWinnings > 0) $winorlosemessage.append(`Unlucky ${name}! Your bets didn't match this time you lost £${totalBets} and have £${totalLoses} from the last round. Have another go...?`);
     $nextRound.html('Play again?').on('click', nextRound);
-    $cashout.html('TopUp?').on('click', topUp);
-    $amountHeader.html(`You have £${amount}`);
+    $topUp.html('TopUp?').on('click', topUp);
+    if (amountInput >= 10)$cashout.html('Cashout?').on('click', cashoutGif);
+  }
+
+  function cashoutGif() {
+    $fullScreen.show();
+    $welcomePopup.hide();
+    $newBalance = 0;
+    if(round === 4) {
+      $firstPopup.show();
+      $winorlosemessage.html(`Wow you are Lucky! Here's your winnings of £${totalWinnings}. We hope you come back soon!`);
+    }
+    $firstPopup.show();
+    $winorlosemessage.html(`Here's your winnings of £${totalWinnings}. We hope you come back soon!`);
+    $nextroundButtons.show();
+    $cashout.hide();
+    $nextRound.show();
+    round = 1;
+    $nextRound.html('Play again?').on('click', nextRound);
   }
 
   function topUp() {
@@ -230,23 +258,17 @@ function init() {
     $welcomeButton.on('click',(e) => {
       e.preventDefault();
       restart();
+      amountTopup();
     });
   }
-  // 
-  // function cashoutGif() {
-  //   $giphy.show();
-  //   // $fullScreen.show();
-  //   // $welcomePopup.hide();
-  //   // $firstPopup.hide();
-  // }
+
 
   function nextRound() {
     restart();
-    if(round === 1) timer = 2;
+    if(round === 1) timer = 5;
     if(round > 1) {
       timer = 10;
-      amount = (amountAdded - total) + totalWinnings;
-      $amountHeader.html(`You Have £${amount}`);
+      $amountHeader.html(`You Have £${$newBalance + totalWinnings}`);
       $winningsScreen.html(totalWinnings);
       $body.addClass('bg2');
       $numButtons.show();
@@ -260,9 +282,14 @@ function init() {
       timer = 10;
       $bonusCircle.show();
       $greenButton.show();
-      // $addWinner.html(`${name}: 30`);
+      $addtoLeader.html(`${name}: 30`);
     }
   }
+
+  $colorButtons.click(function() {
+    $colorHeader.removeClass('flash');
+    if(!timerHasStarted) countdown();
+  });
 
   //submit form only shown once and calls the countdown once submitted
   $submitForm.submit(function(e) {
@@ -274,7 +301,6 @@ function init() {
     $colorHeader.addClass('flash');
     $colorButtons.show();
     $colorHeader.show();
-    // countdown();
   });
 
   // which color is chosen
@@ -284,11 +310,7 @@ function init() {
     $colorChoice.show();
     $colorHeader.removeClass('flash');
     $colorChoice.html(`${name} chose ${choice}`);
-    if(round > 1 && choiceNum) {
-      $tableHeader.toggleClass('flash');
-    } else if (round === 1) {
-      $tableHeader.toggleClass('flash');
-    }
+    if(round === 1 && choice) $tableHeader.toggleClass('flash');
   });
 
   // which num is chosen
@@ -298,24 +320,28 @@ function init() {
     choiceNum = $(e.target).val();
     $colorHeader.removeClass('flash');
     $colorChoice.show().html(`${name} chose ${choice} and ${choiceNum}`);
-    if(choice && choiceNum) $tableHeader.toggleClass('flash');
+    if(round > 1 && choiceNum) $tableHeader.toggleClass('flash');
   });
 
   function updateBet(e) {
+    console.log(e.currentTarget);
     if(
       $(e.target).hasClass('add') &&
-      amount > 0 &&
-      total < amount
-    ) total = total + 10;
-    else if($(e.target).hasClass('remove') && total > 0) total = total - 10;
-    else if($(e.target).hasClass('reset')) total = 0;
+      amountInput > 0 &&
+      totalBets < amountInput
+    ) totalBets = totalBets + 10;
+    else if($(e.target).hasClass('remove') && totalBets > 0) totalBets = totalBets - 10;
+    else if($(e.target).hasClass('reset')) totalBets = 0;
 
-    $totalBet.text(total);
-    $betsMessage.html(`${name} placed ${total} bets on ${choice}`);
-    $tableHeader.removeClass('flash');
+    $newBalance = (amountInput - totalBets);
+    $amountHeader.html(`You have £${$newBalance}`);
+    $totalBet.text(totalBets);
+    $betsMessage.html(`${name} placed ${totalBets} bets on ${choice}`);
+    $tableHeader.toggleClass('flash');
   }
 
   // Reset
+  console.log('assigning updateBet');
   $betCalc.click(updateBet);
 }
 

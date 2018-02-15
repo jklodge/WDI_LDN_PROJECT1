@@ -74,8 +74,8 @@ body {
     margin: 10px;
 
     button {
-      margin: 0 5px;
-      border-radius: 5px;
+      margin: 0;
+      border-radius: 9px;
       height: 25px;
     }
   }
@@ -277,21 +277,21 @@ span {
   border: white solid 1px;
   background-color: rgba( 0, 0, 255, 0.4);
 }
-.add {
+.addhold {
   flex-basis: 33.3%;
   width: 33.3%;
   border: white solid 1px;
   border-radius: 5px;
   background-color: rgba( 0, 0, 255, 0.4);
 }
-.reset {
+.resethold {
   flex-basis: 28%;
   width: 28%;
   border: white solid 1px;
   border-radius: 5px;
   background-color: rgba( 0, 0, 255, 0.4);
 }
-.remove {
+.removehold {
   flex-basis: 38.6%;
   width: 38.6%;
   border: white solid 1px;
