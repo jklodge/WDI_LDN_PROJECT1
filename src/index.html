@@ -12,8 +12,23 @@
 <body>
   <div class="fullScreen">
     <div class="firstPopup">
+    <div class="welcomepop">
+      <p class="welcomemessage"> Welcome to JKays Casino! How much would you like to bring to the table?</p>
+    <form class="welcomeForm">
+      <input class="value" type="number" name="amount" value="0" step="10" min="0">
+      <button class="welcomeButton" type="submit" name="submit">Let's Play</button>
+    </form>
+    </div>
+      <div class="giphy">
+      <img src="images/money.gif" alt="raining money">
+      </div>
       <p class="winorlose"></p>
-    <button class="nextRound"></button>
+      <img class="chest" src="images/chest.png" width="100px">
+      <img class="closedChest" width="100px">
+      <div class="roundButtons">
+      <button class="cashout"></button>
+      <button class="nextRound"></button>
+    </div>
     </div>
   </div>
   <header>
@@ -58,11 +73,12 @@
   <section class="middle">
 <ul class="table">
   <li class="topheader animated infinite">Place your bets</li>
+  <li class="amountheader">You have </li>
   <li class="topone">Add your bets</li>
   <li class="toptwo total"></li>
-  <li class="add"><button class="add">ADD</button></li>
+  <li class="add"><button class="add">ADD £10</button></li>
   <li class="reset"><button class="reset">RESET</button></li>
-  <li class="remove"><button class="remove">REMOVE</button></li>
+  <li class="remove"><button class="remove">REMOVE £10</button></li>
   <li><p class="final"></p></li>
 </ul>
 
@@ -90,7 +106,7 @@
 </div>
 
 </section>
-<img src="images/getlucky.png" alt="">
+<img class="getlucky" src="images/getlucky.png" alt="">
 
 </main>
 </body>
