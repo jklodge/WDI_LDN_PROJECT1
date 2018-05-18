@@ -23,7 +23,19 @@ body {
   background-position: center;
 }
 .bg3 {
-  background-image: url(https://i.imgur.com/MzCPVqD.jpg);
+  background-image: url(https://i.imgur.com/7k0KcHW.jpg);
+  background-repeat: no-repeat;
+  background-size: stretch;
+  background-position: center;
+}
+.bg4 {
+  background-image: url(https://i.imgur.com/bnIa7V7.jpg);
+  background-repeat: no-repeat;
+  background-size: stretch;
+  background-position: center;
+}
+.roulette {
+  background-image: url(https://media.giphy.com/media/xUn3CftPBajoflzROU/giphy.gif);
   background-repeat: no-repeat;
   background-size: stretch;
   background-position: center;
@@ -31,6 +43,7 @@ body {
 .chest {
   display: block;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .closedChest {
@@ -234,6 +247,7 @@ span {
 .winnings {
   margin: 0 50px;
   font-size: 20px;
+  color: white;
 }
 .totalWinnings {
   font-size: 40px;
@@ -353,6 +367,7 @@ span {
   margin-left: 1%;
   margin-top: 16%;
 }
+
 .highlight {
   border: yellow solid 4px;
   border-radius: 10px;
