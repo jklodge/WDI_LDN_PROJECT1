@@ -8,30 +8,18 @@ For our first project, we were given four days to design and build an in-browser
 
 ---
 
-<p align="center"><img src="https://imgur.com/8llXrdZ.png" width="700"></p>
+<p align="center"><img src="https://i.imgur.com/q6YfOg2.png" width="700"></p>
 
 ###### Level one gives the player 10 seconds to pick red or blue and place (fun(fake)) bets. Once the bets have been placed the board is frozen and the spinner starts. If it lands on the correct color the player can cash out or move on to the next level, else, they're asked if they would like to play again.
 
-<p align="center"><img src="https://imgur.com/Z2mQLZf.png" width="700"></p>
 
 ###### In level two, the difficulty increases as the player is given the choice of red or blue and odd or even.
 
-<p align="center"><img src="https://imgur.com/3yyNskp.png" width="700"></p>
-
-<p align="center"><img src="https://imgur.com/L1Ij5dt.png" width="700"></p>
-
-<p align="center"><img src="https://imgur.com/Fx0ZE8B.png" width="700"></p>
-
-
 
 ```
-function returnResult() {
-  if (wordIsValid === true && invalidLetters.length === 0 && wordIsRepeat === false) {
-    $wordLog.append($(`<span>${submittedWord}</span>`).addClass('green'));
-    scoreUpdate();
-  } else {
-    $wordLog.append($(`<span>${submittedWord}</span>`).addClass('red'));
-  }
+if (round === 2){
+  totalWinnings = (totalBets * 1.7) + totalWinnings;
+  $winorlosemessage.html(`Congratualations ${name} you won £${totalWinnings}! You're through to Round ${round}!`);
 }
 ```
 
@@ -40,3 +28,9 @@ function returnResult() {
 ---
 
 I was pleased with the final product, which I feel looks good an plays well. The game could be developed into a larger game with new levels and challenges to further test the player’s luck.
+
+<h4>Setup instructions</h4>
+Clone or download the repo
+Install dependencies with yarn install
+Launch the app with gulp
+NB: You will need to have installed gulp-cli globally
