@@ -1,6 +1,6 @@
 ![image](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 
-# GA WDI-30 Project 1 - WeeWords
+# GA WDI-30 Project 1 - Lucky Spin
 
 For our first project, we were given four days to design and build an in-browser game using HTML, CSS and JavaScript (jQuery library used). Spinner was a consequence of a recent trip to Vegas, I wanted to put a fun twist on the roulette game. It requires the player to spin the board guessing whether it will land on red or blue, moving on to more difficult level if they win.
 
